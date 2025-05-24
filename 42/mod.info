@@ -1,0 +1,5 @@
+name=Nepenthe's Easy Distributions API
+poster=preview.png
+id=NepEasyDistro
+description=Provides an easy way to add new items to loot tables by copying an existing item's loot data.
+icon=nepicon.png
