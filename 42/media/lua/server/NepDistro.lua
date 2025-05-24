@@ -36,8 +36,8 @@ function NepDistro.FindItemLootValues(refItem)
         for j,w in pairs(v.items) do
             if w==fullName or w==shortName then
                 NepDistro.DebugSayVerbose(tostring(k).." "..tostring(w).." "..tostring(v.items[j+1]))
-                -- table.insert(retValues, {k, v.items[j+1]})
-                retValues[k]=v.items[j+1]
+                table.insert(retValues, {lootTable=k, probabilty=(v.items[j+1])})
+                --retValues[k]=v.items[j+1]
                 found=found+1
             end
         end
@@ -56,9 +56,9 @@ function NepDistro.AddLoot(newItem, refItem, lootMult)
     local refValues = NepDistro.FindItemLootValues(refItem)
     local added = 0
     for k,v in pairs(refValues) do
-        NepDistro.DebugSayVerbose("Adding "..newItem.." to table "..k.." value: "..string.format("%.3f",v * lootMult))
-        table.insert(ProceduralDistributions["list"][k].items, newItem);
-        table.insert(ProceduralDistributions["list"][k].items, v * lootMult);
+        NepDistro.DebugSayVerbose("Adding "..newItem.." to table "..v.lootTable.." value: "..string.format("%.3f",v.probabilty * lootMult))
+        table.insert(ProceduralDistributions["list"][v.lootTable].items, newItem);
+        table.insert(ProceduralDistributions["list"][v.lootTable].items, v.probabilty * lootMult);
         added=added+1
     end
     NepDistro.DebugSay("Added "..added.." loot entries for "..newItem.." based on "..refItem.." with a "..string.format("%.3f",lootMult).." modifier")
