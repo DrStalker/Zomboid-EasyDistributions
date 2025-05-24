@@ -4,7 +4,7 @@ require "Items/ProceduralDistributions"
 
 NepDistro = NepDistro or {}
 NepDistro.Debug = true
-NepDistro.VerboseDebug = true
+NepDistro.VerboseDebug = false
 
 
 function NepDistro.DebugSay(message)
@@ -19,6 +19,19 @@ function NepDistro.ErrorSay(message)
     print ("NepDistro: ERROR "..tostring(message))
 end
 
+function NepDistro.EnableDebug(bool)
+    bool=bool or true
+    NepDistro.Debug = bool
+end
+
+function NepDistro.EnableVerbose(bool)
+    bool=bool or true
+    NepDistro.VerboseDebug = bool
+    if bool then NepDistro.Debug = bool end
+end
+
+-- ----------------------------------------------------
+-- Find all the loot table entries for an item, returns them as a table of {lootTable=, probabilty=}
 
 function NepDistro.FindItemLootValues(refItem)
     local retValues={}
@@ -42,9 +55,12 @@ function NepDistro.FindItemLootValues(refItem)
             end
         end
     end
-    NepDistro.DebugSay("Found "..tostring(found).." entries for "..refItem)
+    NepDistro.DebugSayVerbose("Found "..tostring(found).." entries for "..refItem)
     return retValues
 end
+
+-- ----------------------------------------------------
+-- Does some sanity checking, calls FindItemLootValues then adds new values to loot tables.
 
 function NepDistro.AddLoot(newItem, refItem, lootMult)
     if lootMult == nil then lootMult=1.0 end --default if not specified
