@@ -1,0 +1,3 @@
+
+Need to redo stuff to account for multiple entries for an item in one table, meaning the loot table name can't be a key
+  
