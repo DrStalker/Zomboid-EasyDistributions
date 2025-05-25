@@ -2,7 +2,7 @@ require "Items/ProceduralDistributions"
 --require "Vehicles/VehicleDistribution"
 
 
-EasyDistro = EasyDistro or {}
+EasyDistro =  {}
 EasyDistro.Debug = true
 EasyDistro.VerboseDebug = false
 
@@ -90,3 +90,5 @@ end
 
 --EasyDistro.Add("Base.NepPR57","Base.ArmorSchematic",1)
 --EasyDistro.Add("Base.NepPR57","Base.Pistol",1)
+
+return EasyDistro
