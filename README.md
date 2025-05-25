@@ -1,0 +1,44 @@
+A library to simplify loot distribution for modders by allowing a new item to copy an existing item's loot probabilities.
+
+[h2]For non-modders:[/h2]
+
+Install this mod if it is a requirement for another mod you want.  This mod can be added and removed freely, but the mods that depend on this may not be so easy-going.
+
+[h2]For Modders:[/h2]
+
+[h3]Enabling the Library[/h3]
+
+Just add the following require line to a lua file in your mod's /media/lua/server folder, then place any calls to library below that so they execute as the .lua file is loaded.
+
+[code]require "EasyDistro"[/code]
+
+In your mod.info file add [b]require=\NepEasyDistro[/b] and add the library as a requirement on Steam to make it easier for users to download.
+
+[h3]Adding Items[/h3]
+
+To copy the loot distribution of an existing item call [b]EasyDistro.Add[/b] with the identifier of your new item and the identifier of the item you want to copy. For example, if you create a new type of handgun and want it to show up everywhere the standard 9mm pistol shows up:
+
+[code]EasyDistro.AddItem("Base.MyNewGun","Base.Pistol")[/code]
+
+The [b]Add[/b] function supports an optional third parameter that will multiply the new items probability. For example, to add a purple pen that appear with 25% of the probability of a green pen:
+
+[code]EasyDistro.AddItem("Base.MyPurplePen", "Base.GreenPen", 0.25)[/code]
+
+
+
+That's it.  Everything else is optional.
+
+
+[h3]Enabling verbose mode[/h3]
+
+To aid troubleshooting, you can call [b]EasyDistro.EnableVerbose()[/b] which will list every entry as they are found, and again as they are added to the loot table.  Please don't leave this enabled in your mod when publishing, because it will affect all mods using this library and result in log file spam for all users!
+
+[h3]Force Updating the Item picker[/h3]
+
+If for some reason you update the loot tables after the ItemPicker has already initialized, [b]EasyDistro.UpdateItemPicker()[/b]  will force the ItemPicker to re-read the ProceduralDistributions table.  This isn't needed if you call [b]EasyDistro.Add[/b] as described above, but it you call it later for some reason this allows your changes to take effect.
+
+
+
+
+Workshop ID: 3487312010
+Mod ID: NepEasyDistro
