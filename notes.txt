@@ -1,3 +1,8 @@
+ToDo
+
+[ ] Support for vehicle Distributions
+[ ] RemoveItem(badItem)
+[ ] redo preview image
 
 
 A library to simplify loot distribution for modders by allowing a new item to copy an existing item's loot probabilities.
